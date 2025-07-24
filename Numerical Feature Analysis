@@ -1,0 +1,26 @@
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+def plot_histogram(df, column_name):
+    """
+    Draw a histogram + KDE for `column_name`
+    and mark its mean (red dashed) and median (green dashed).
+    """
+    plt.figure(figsize=(5, 3))
+    sns.histplot(data=df, x=column_name, kde=True)
+
+    # ── Mean & median ──
+    col_mean   = df[column_name].mean()
+    col_median = df[column_name].median()
+    plt.axvline(col_mean,   color='red',   linestyle='dashed', linewidth=1,
+                label=f"Mean = {col_mean:.2f}")
+    plt.axvline(col_median, color='green', linestyle='dashed', linewidth=1,
+                label=f"Median = {col_median:.2f}")
+
+    # ── Labels & legend ───
+    plt.xlabel(column_name)
+    plt.ylabel('Count')
+    plt.title(f'Distribution of {column_name}')
+    plt.legend()
+    plt.tight_layout()
+    plt.show()
