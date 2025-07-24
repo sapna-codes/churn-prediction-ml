@@ -1,0 +1,29 @@
+#identifyig the data types= obj
+object_columns=df.select_dtypes(include="object").columns
+
+encoders={}
+
+for column in object_columns:
+  label_encoder=LabelEncoder()
+  df[column]=label_encoder.fit_transform(df[column])
+  encoders[column]=label_encoder
+
+  with open("encoders.pkl","wb") as f:
+    pickle.dump(encoders,f)
+
+encoders
+{'gender': LabelEncoder(),
+ 'Partner': LabelEncoder(),
+ 'Dependents': LabelEncoder(),
+ 'PhoneService': LabelEncoder(),
+ 'MultipleLines': LabelEncoder(),
+ 'InternetService': LabelEncoder(),
+ 'OnlineSecurity': LabelEncoder(),
+ 'OnlineBackup': LabelEncoder(),
+ 'DeviceProtection': LabelEncoder(),
+ 'TechSupport': LabelEncoder(),
+ 'StreamingTV': LabelEncoder(),
+ 'StreamingMovies': LabelEncoder(),
+ 'Contract': LabelEncoder(),
+ 'PaperlessBilling': LabelEncoder(),
+ 'PaymentMethod': LabelEncoder()}
