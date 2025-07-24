@@ -1,0 +1,8 @@
+smote=SMOTE()
+x_train_smote,y_train_smote=smote.fit_resample(x_train,y_train)
+print(y_train_smote.value_counts())
+
+Churn
+0    4138
+1    4138
+Name: count, dtype: int64
