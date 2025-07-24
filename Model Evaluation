@@ -1,0 +1,71 @@
+print(y_test.value_counts())
+Churn
+0    1036
+1     373
+Name: count, dtype: int64
+
+y_test_pred=model.predict(x_test)
+print("Accuracy Score\n",accuracy_score(y_test,y_test_pred))
+
+print("confusion matrix\n",confusion_matrix(y_test,y_test_pred))
+
+print("classification report\n",classification_report(y_test,y_test_pred))
+//output y_test_pred=model.predict(x_test)
+print("Accuracy Score\n",accuracy_score(y_test,y_test_pred))
+
+print("confusion matrix\n",confusion_matrix(y_test,y_test_pred))
+
+print("classification report\n",classification_report(y_test,y_test_pred))
+
+
+import pickle
+
+# Create dictionary with model and features
+model_data = {
+    'model': rfc,
+    'features_names': x.columns.to_list()
+}
+
+# Save the full dictionary
+with open('Customer Churn Model.pkl', 'wb') as f:
+    pickle.dump(model_data, f)
+# Load the full dictionary
+with open('Customer Churn Model.pkl', 'rb') as f:
+    model_data = pickle.load(f)
+
+# Access model and feature names
+loaded_model = model_data['model']
+features_names = model_data['features_names']
+
+print(loaded_model)
+print(features_names)
+
+
+data = [
+    {
+        'customerID': '7590-VHVEG',
+        'gender': 'Female',
+        'SeniorCitizen': 0,
+        'Partner': 'Yes',
+        'Dependents': 'No',
+        'tenure': 1,
+        'PhoneService': 'No',
+        'MultipleLines': 'No phone service',
+        'InternetService': 'DSL',
+        'OnlineSecurity': 'No',
+        'OnlineBackup': 'Yes',
+        'DeviceProtection': 'No',
+        'TechSupport': 'No',
+        'StreamingTV': 'No',
+        'StreamingMovies': 'No',
+        'Contract': 'Month-to-month',
+        'PaperlessBilling': 'Yes',
+        'PaymentMethod': 'Electronic check',
+        'MonthlyCharges': 29.85,
+        'TotalCharges': 29.85,
+        'Churn': 'No'
+    }
+]
+
+df = pd.DataFrame(data)
+print(df)
