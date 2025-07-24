@@ -1,0 +1,27 @@
+models={
+    'Decision Tree': DecisionTreeClassifier(),
+    'Random Forest': RandomForestClassifier(),
+    'XGBoost': XGBClassifier(random_state=42)
+}
+cv_scores={}
+
+for model_name,model in models.items():
+  print(f"Training {model_name} with default parameters")
+  scores=cross_val_score(model,x_train_smote,y_train_smote,cv=5,scoring='accuracy')
+  cv_scores[model_name]=scores
+  print(f"{model_name} cross Validation accuracy scores: {np.mean(scores):.2f}")
+  print('-'*70)
+
+Training Decision Tree with default parameters
+Decision Tree cross Validation accuracy scores: 0.79
+----------------------------------------------------------------------
+Training Random Forest with default parameters
+Random Forest cross Validation accuracy scores: 0.84
+----------------------------------------------------------------------
+Training XGBoost with default parameters
+XGBoost cross Validation accuracy scores: 0.83
+---------------------------------------------------------------------
+
+cv_scores
+rfc=RandomForestClassifier(random_state=42)
+model.fit(x_train_smote,y_train_smote)
