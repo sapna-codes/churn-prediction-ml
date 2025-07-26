@@ -6,13 +6,13 @@ obj_columns=['SeniorCitizen']+obj_columns
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# 1. Get all object columns
+## 1. Get all object columns
 obj_columns = df.select_dtypes(include="object").columns.to_list()
 
-# 2. If you also want SeniorCitizen (normally numeric) treat it as categorical
+## 2. If you also want SeniorCitizen (normally numeric) treat it as categorical
 obj_columns = ["SeniorCitizen"] + obj_columns   # optional
 
-# 3. Loop through columns
+## 3. Loop through columns
 for col in obj_columns:                         #  ←  no parentheses!
     plt.figure(figsize=(5, 3))
     sns.countplot(data=df, x=col)               # pass df via data=
